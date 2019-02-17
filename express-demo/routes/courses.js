@@ -26,11 +26,10 @@ router.get('/:id', (req, res) => {
 
 //Add new course route
 router.post('/', (req, res) => {
-    const {
-        error
-    } = validateCourse(req.body); //Object destructuring
 
-    // If invalid, return 404 - Bad request
+    const { error } = validateCourse(req.body); //Object destructuring
+
+    // If invalid, return 400 - Bad request
     if (error) return res.status(400).send(error.details[0].message);
 
     const course = {
@@ -40,6 +39,7 @@ router.post('/', (req, res) => {
 
     courses.push(course);
     res.send(course);
+    
 })
 
 //Update a course
