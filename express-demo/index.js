@@ -1,5 +1,4 @@
-const startupDebugger = require('debug')('app:startup');
-const dbDebugger = require('debug')('app:db');
+const debug = require('debug')('app:startup');
 const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -27,7 +26,7 @@ console.log('Mail Password:' + config.get('mail.password'));
 //Check if code is running on development machine
 if(app.get('env') === 'development'){
     app.use(morgan('tiny')); //HTTP request logger.
-    startupDebugger('Morgan is enabled...');
+    debug('Morgan is enabled...');
 }
 
 app.use(logger);
